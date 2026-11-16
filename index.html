@@ -7,16 +7,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     :root {
-      --bg: #F9F9F8;
+      --bg-top: #EEF2F6;
+      --bg-bottom: #F8FAFC;
       --surface: #FFFFFF;
-      --text-primary: #141413;
-      --text-secondary: #5C5C58;
-      --border: #E5E5E0;
-      --accent: #141413;
-      --accent-hover: #2C2C2A;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --navy: #1E3A5F;
+      --navy-hover: #152A45;
       --green: #16A34A;
     }
 
@@ -28,12 +29,12 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 45%);
       color: var(--text-primary);
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 28px 18px 48px;
+      padding: 44px 18px 48px;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -45,47 +46,21 @@
       align-items: center;
     }
 
-    .top-bar {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 12px;
-    }
-
-    .qr-toggle-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 7px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-primary);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .qr-toggle-btn:hover {
-      background: #F2F2EE;
-    }
-
     .avatar-wrapper {
       position: relative;
-      width: 112px;
-      height: 112px;
+      width: 118px;
+      height: 118px;
       margin-bottom: 18px;
     }
 
     .avatar {
-      width: 112px;
-      height: 112px;
+      width: 118px;
+      height: 118px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--surface);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      background-color: var(--text-primary);
+      border: 4px solid var(--surface);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+      background-color: var(--navy);
       color: #FFFFFF;
       display: flex;
       align-items: center;
@@ -97,25 +72,27 @@
 
     .status-dot {
       position: absolute;
-      bottom: 5px;
-      right: 5px;
-      width: 16px;
-      height: 16px;
+      bottom: 6px;
+      right: 6px;
+      width: 17px;
+      height: 17px;
       background-color: var(--green);
-      border: 3px solid var(--bg);
+      border: 3px solid var(--surface);
       border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     }
 
     h1 {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 700;
       letter-spacing: -0.02em;
       text-align: center;
+      color: var(--text-primary);
       margin-bottom: 6px;
     }
 
     .subtitle {
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 500;
       color: var(--text-secondary);
       text-align: center;
@@ -124,16 +101,16 @@
 
     .location {
       font-size: 13px;
-      color: #787873;
+      color: var(--text-muted);
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .links-stack {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 13px;
     }
 
     .link-card {
@@ -147,13 +124,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: transform 0.12s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+      transition: transform 0.14s ease, box-shadow 0.16s ease, border-color 0.16s ease;
     }
 
     .link-card:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
-      border-color: #D2D2CC;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+      border-color: #CBD5E1;
     }
 
     .link-card:active {
@@ -161,14 +139,15 @@
     }
 
     .link-card.primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--navy) 0%, #274C77 100%);
       color: #FFFFFF;
-      border-color: var(--accent);
+      border-color: transparent;
+      box-shadow: 0 8px 20px rgba(30, 58, 95, 0.22);
     }
 
     .link-card.primary:hover {
-      background: var(--accent-hover);
-      border-color: var(--accent-hover);
+      background: linear-gradient(135deg, var(--navy-hover) 0%, #1E3A5F 100%);
+      box-shadow: 0 10px 24px rgba(30, 58, 95, 0.28);
     }
 
     .link-left {
@@ -178,8 +157,8 @@
     }
 
     .icon-box {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -188,23 +167,23 @@
     }
 
     .primary .icon-box {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.14);
       color: #FFFFFF;
     }
 
     .icon-linkedin {
-      background: #EEF4FB;
+      background: #EFF6FF;
       color: #0A66C2;
     }
 
     .icon-whatsapp {
-      background: #ECFDF3;
+      background: #F0FDF4;
       color: #16A34A;
     }
 
     .icon-email {
-      background: #F4F4F1;
-      color: #141413;
+      background: #F1F5F9;
+      color: #1E3A5F;
     }
 
     .link-text {
@@ -220,123 +199,26 @@
 
     .link-sub {
       font-size: 12.5px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
       margin-top: 2px;
     }
 
     .primary .link-sub {
-      color: rgba(255, 255, 255, 0.72);
-    }
-
-    .link-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .copy-btn {
-      background: #F4F4F1;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-primary);
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-
-    .copy-btn:hover {
-      background: #E8E8E3;
+      color: rgba(255, 255, 255, 0.80);
     }
 
     .arrow-icon {
-      color: #9A9A94;
+      color: #94A3B8;
       flex-shrink: 0;
     }
 
     .primary .arrow-icon {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* QR Modal */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(20, 20, 19, 0.55);
-      backdrop-filter: blur(4px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 50;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-card {
-      background: var(--surface);
-      border-radius: 24px;
-      padding: 28px 24px;
-      width: 100%;
-      max-width: 320px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
-    }
-
-    .modal-title {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .modal-sub {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-bottom: 20px;
-    }
-
-    #qrcode {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 14px;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      margin: 0 auto 18px;
-      width: fit-content;
-    }
-
-    .close-modal-btn {
-      width: 100%;
-      background: var(--accent);
-      color: #FFFFFF;
-      border: none;
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
+      color: rgba(255, 255, 255, 0.80);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="top-bar">
-      <button class="qr-toggle-btn" id="openQrBtn" type="button">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="7" height="7" rx="1"></rect>
-          <rect x="14" y="3" width="7" height="7" rx="1"></rect>
-          <rect x="3" y="14" width="7" height="7" rx="1"></rect>
-          <path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h3M20 14v3"></path>
-        </svg>
-        QR
-      </button>
-    </div>
-
     <div class="avatar-wrapper" id="avatarContainer">
       <div class="avatar" id="avatarFallback">MA</div>
       <span class="status-dot" title="Available for opportunities"></span>
@@ -406,8 +288,8 @@
         </svg>
       </a>
 
-      <!-- 4. Correo electrónico -->
-      <div class="link-card" style="cursor: pointer;" onclick="window.location.href='mailto:marcaceboix@gmail.com'">
+      <!-- 4. Correo electrónico (Directo mailto) -->
+      <a class="link-card" href="mailto:marcaceboix@gmail.com?subject=Contacto%20-%20Evento%20UPF-BSM">
         <div class="link-left">
           <div class="icon-box icon-email">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -420,32 +302,20 @@
             <span class="link-sub">marcaceboix@gmail.com</span>
           </div>
         </div>
-        <div class="link-actions">
-          <button class="copy-btn" type="button" id="copyEmailBtn" onclick="copyEmail(event)">Copiar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal QR -->
-  <div class="modal-backdrop" id="qrModal">
-    <div class="modal-card">
-      <p class="modal-title">Marc Acebedo</p>
-      <p class="modal-sub">Escanea para abrir mi perfil</p>
-      <div id="qrcode"></div>
-      <button class="close-modal-btn" id="closeQrBtn" type="button">Cerrar</button>
+        <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
     </div>
   </div>
 
   <script>
-    // Nombres de tus archivos locales en GitHub Pages
     const PHOTO_URL = "foto.jpg";
     const CV_URL = "cv.pdf";
 
-    // Configurar enlace CV
     document.getElementById("cvLink").href = CV_URL;
 
-    // Cargar foto si existe en la carpeta, si no mantener "MA"
     if (PHOTO_URL) {
       const img = document.createElement("img");
       img.src = PHOTO_URL;
@@ -457,43 +327,6 @@
         if (fallback) container.replaceChild(img, fallback);
       };
     }
-
-    // Copiar correo al portapapeles
-    function copyEmail(e) {
-      e.stopPropagation();
-      navigator.clipboard.writeText("marcaceboix@gmail.com").then(() => {
-        const btn = document.getElementById("copyEmailBtn");
-        btn.textContent = "¡Copiado!";
-        setTimeout(() => { btn.textContent = "Copiar"; }, 1800);
-      });
-    }
-
-    // Modal QR dinámico con la URL actual
-    const qrModal = document.getElementById("qrModal");
-    let qrGenerated = false;
-
-    document.getElementById("openQrBtn").addEventListener("click", () => {
-      qrModal.classList.add("open");
-      if (!qrGenerated) {
-        new QRCode(document.getElementById("qrcode"), {
-          text: window.location.href,
-          width: 190,
-          height: 190,
-          colorDark: "#141413",
-          colorLight: "#FFFFFF",
-          correctLevel: QRCode.CorrectLevel.M
-        });
-        qrGenerated = true;
-      }
-    });
-
-    document.getElementById("closeQrBtn").addEventListener("click", () => {
-      qrModal.classList.remove("open");
-    });
-
-    qrModal.addEventListener("click", (e) => {
-      if (e.target === qrModal) qrModal.classList.remove("open");
-    });
   </script>
 </body>
 </html>
